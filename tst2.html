@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Benhettal Meryem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS for animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .skill-bar {
+            height: 6px;
+            border-radius: 3px;
+            background: #333;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: width 1s ease-in-out;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 font-sans">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-gray-900 bg-opacity-90 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold gradient-text">Meryem.</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link">Accueil</a>
+                    <a href="#about" class="nav-link">À propos</a>
+                    <a href="#skills" class="nav-link">Compétences</a>
+                    <a href="#education" class="nav-link">Formation</a>
+                    <a href="#experience" class="nav-link">Expérience</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                <button class="md:hidden focus:outline-none" id="menu-toggle">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            <!-- Mobile menu -->
+            <div class="md:hidden hidden flex-col space-y-4 mt-4" id="mobile-menu">
+                <a href="#home" class="nav-link">Accueil</a>
+                <a href="#about" class="nav-link">À propos</a>
+                <a href="#skills" class="nav-link">Compétences</a>
+                <a href="#education" class="nav-link">Formation</a>
+                <a href="#experience" class="nav-link">Expérience</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-20">
+        <div class="container mx-auto px-6 py-12 md:py-24">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0 fade-in">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Benhettal <span class="gradient-text">Meryem</span></h1>
+                    <h2 class="text-2xl md:text-3xl text-gray-400 mb-6">Ingénieure des Données & Développeuse</h2>
+                    <p class="text-lg text-gray-400 mb-8 max-w-lg">Diplômée en Ingénierie des Données et Développement des Logiciels, passionnée par la création de solutions innovantes.</p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-medium hover:opacity-90 transition">Me contacter</a>
+                        <a href="#about" class="px-6 py-3 border border-gray-700 rounded-full font-medium hover:bg-gray-800 transition">En savoir plus</a>
+                        <a href="path/to/your-cv.pdf" download class="px-6 py-3 border border-gray-700 rounded-full font-medium hover:bg-gray-800 transition flex items-center">
+                            <i class="fas fa-download mr-2"></i> Télécharger CV
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center fade-in delay-1">
+                    <div class="relative">
+                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 opacity-20 absolute -z-10 top-0 left-0 blur-xl"></div>
+                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-gray-700">
+                            <!-- Placeholder for profile image -->
+                            <div class="w-full h-full bg-gray-800 flex items-center justify-center">
+                                <i class="fas fa-user text-6xl text-gray-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center fade-in"><span class="gradient-text">À propos</span> de moi</h2>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center fade-in">
+                    <div class="relative">
+                        <div class="w-48 h-48 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 opacity-20 absolute -z-10 top-0 left-0 blur-xl"></div>
+                        <div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-gray-700">
+                            <!-- Placeholder for profile image -->
+                            <div class="w-full h-full bg-gray-700 flex items-center justify-center">
+                                <i class="fas fa-user text-5xl text-gray-500"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-2/3 md:pl-12 fade-in delay-1">
+                    <p class="text-lg text-gray-300 mb-6">
+                        Diplômée en Ingénierie des Données et Développement des Logiciels, je possède une solide formation en informatique, avec des compétences en programmation, développement d'applications et analyse de données. Mon parcours m'a permis de mettre en pratique mes connaissances à travers des projets concrets.
+                    </p>
+                    <p class="text-lg text-gray-300 mb-6">
+                        Je suis motivée à contribuer à des projets innovants au sein d'une équipe dynamique, tout en développant continuellement mes compétences techniques et professionnelles.
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-blue-400 mr-2"></i>
+                            <span>Al Hoceima, Maroc</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-blue-400 mr-2"></i>
+                            <span>Benhettalmaryem@gmail.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-blue-400 mr-2"></i>
+                            <span>0617771507</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center fade-in">Mes <span class="gradient-text">Compétences</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Technical Skills -->
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-code text-blue-400 mr-3"></i>
+                        <span>Techniques</span>
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>JavaScript</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Python</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>HTML/CSS</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>SQL</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Git</span>
+                                <span>70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Soft Skills -->
+                <div class="fade-in delay-1">
+                    <h3 class="text-2xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-users text-purple-400 mr-3"></i>
+                        <span>Professionnelles</span>
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Travail en équipe</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Organisation</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Relation client</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Communication</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-semibold mt-10 mb-6 flex items-center">
+                        <i class="fas fa-language text-blue-400 mr-3"></i>
+                        <span>Langues</span>
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Arabe</span>
+                                <span>Langue maternelle</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Tamazight</span>
+                                <span>Langue maternelle</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Français</span>
+                                <span>Courant</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Anglais</span>
+                                <span>Courant</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Espagnol</span>
+                                <span>Débutante</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center fade-in">Mon <span class="gradient-text">Parcours</span> académique</h2>
+            
+            <div class="relative">
+                <!-- Timeline line -->
+                <div class="hidden md:block absolute left-1/2 h-full w-1 bg-gradient-to-b from-blue-500 to-purple-600 -ml-0.5"></div>
+                
+                <!-- Timeline items -->
+                <div class="space-y-12">
+                    <!-- Item 1 -->
+                    <div class="flex flex-col md:flex-row items-center fade-in">
+                        <div class="md:w-1/2 md:pr-12 mb-6 md:mb-0 md:text-right">
+                            <h3 class="text-xl font-bold text-blue-400">Licence en Ingénierie des Données et Développement des Logiciels (IDDL)</h3>
+                            <p class="text-gray-400">Faculté des Sciences et Techniques d'Al Hoceima</p>
+                            <p class="text-gray-500">2025</p>
+                        </div>
+                        <div class="hidden md:flex w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 items-center justify-center text-white font-bold z-10">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 mt-6 md:mt-0">
+                            <!-- Content can be added here if needed -->
+                        </div>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="flex flex-col md:flex-row items-center fade-in delay-1">
+                        <div class="md:w-1/2 md:pr-12 mb-6 md:mb-0 md:text-right">
+                            <!-- Content can be added here if needed -->
+                        </div>
+                        <div class="hidden md:flex w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 items-center justify-center text-white font-bold z-10">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12">
+                            <h3 class="text-xl font-bold text-purple-400">DEUST: Mathématiques, Informatique, Physique</h3>
+                            <p class="text-gray-400">Faculté des Sciences et Techniques d'Al Hoceima</p>
+                            <p class="text-gray-500">2022 - 2024</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="flex flex-col md:flex-row items-center fade-in delay-2">
+                        <div class="md:w-1/2 md:pr-12 mb-6 md:mb-0 md:text-right">
+                            <h3 class="text-xl font-bold text-blue-400">Baccalauréat Scientifique</h3>
+                            <p class="text-gray-400">Lycée Badissi, Al Hoceima</p>
+                            <p class="text-gray-500">2021</p>
+                        </div>
+                        <div class="hidden md:flex w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 items-center justify-center text-white font-bold z-10">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 mt-6 md:mt-0">
+                            <!-- Content can be added here if needed -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center fade-in">Mon <span class="gradient-text">Expérience</span> professionnelle</h2>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-gray-800 rounded-xl p-8 shadow-lg fade-in">
+                    <div class="flex items-start">
+                        <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-3 rounded-lg mr-6">
+                            <i class="fas fa-briefcase text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Stagiaire Développeuse VBA</h3>
+                            <p class="text-blue-400 mb-2">Municipalité d'Al Hoceima | Août - Octobre 2024</p>
+                            <ul class="list-disc pl-5 space-y-2 text-gray-300">
+                                <li>Développement d'une application VBA pour automatiser les tâches administratives.</li>
+                                <li>Création de macros pour la saisie, l'extraction de données et la génération de rapports.</li>
+                                <li>Collaboration avec les différents services pour identifier les besoins.</li>
+                                <li>Formation des utilisateurs et assistance technique.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center fade-in">Me <span class="gradient-text">Contacter</span></h2>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12 fade-in">
+                    <h3 class="text-2xl font-semibold mb-6">Informations de contact</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-2 rounded-lg mr-4">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Téléphone</h4>
+                                <p class="text-gray-400">0617771507</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-2 rounded-lg mr-4">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Email</h4>
+                                <p class="text-gray-400">Benhettalmaryem@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-2 rounded-lg mr-4">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Adresse</h4>
+                                <p class="text-gray-400">Rouadi, Al Hoceima, Maroc</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-semibold mb-6">Télécharger mon CV</h3>
+                        <a href="path/to/your-cv.pdf" download class="inline-block px-6 py-3 border border-gray-700 rounded-lg font-medium hover:bg-gray-700 transition mb-8">
+                            <i class="fas fa-download mr-2"></i> Télécharger au format PDF
+                        </a>
+                        
+                        <h3 class="text-2xl font-semibold mb-6">Réseaux sociaux</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center hover:bg-gradient-to-r from-blue-500 to-purple-600 transition">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center hover:bg-gradient-to-r from-blue-500 to-purple-600 transition">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center hover:bg-gradient-to-r from-blue-500 to-purple-600 transition">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center hover:bg-gradient-to-r from-blue-500 to-purple-600 transition">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 fade-in delay-1">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block mb-2">Votre nom</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block mb-2">Votre email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="subject" class="block mb-2">Sujet</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="message" class="block mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                        <button type="submit" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-medium hover:opacity-90 transition">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-xl font-bold gradient-text mb-4 md:mb-0">Meryem.</div>
+                <div class="text-gray-500 text-sm">
+                    &copy; 2024 Benhettal Meryem. Tous droits réservés.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        fadeElements.forEach(element => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(element);
+        });
+        
+        // Animate skill bars on scroll
+        const skillBars = document.querySelectorAll('.skill-progress');
+        
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const width = entry.target.style.width;
+                    entry.target.style.width = '0';
+                    setTimeout(() => {
+                        entry.target.style.width = width;
+                    }, 100);
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+        
+        skillBars.forEach(bar => {
+            skillObserver.observe(bar);
+        });
+    </script>
+</body>
+</html>
